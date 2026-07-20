@@ -14,7 +14,7 @@ def test_yfinance_connection():
     print(hist.tail(1)[['Close', 'Open', 'Volume']]) # print the last row of the historical data with Close, Open, and Volume columns
 
 def test_alpaca_connection():
-    from alpaca.trading.client import TradingClient
+    from alpaca.trading.client import TradingClient # import the TradingClient class from the alpaca.trading.client module
 
     api_key = os.getenv("ALPACA_API_KEY") # get the API key from the environment variables
     secret_key = os.getenv("ALPACA_SECRET_KEY") # get the secret key from the environment variables
