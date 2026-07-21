@@ -5,7 +5,7 @@ import yfinance as yf
 
 DATA_DIR = "data"  # Directory to store the fetched data
 STOCK_TICKERS = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"]  # List of stock tickers to fetch data for
-CRYPTO_SYMBOLS = ["BTC-USD", "ETH-USD", "LTC-USD"]  # List of cryptocurrency symbols to fetch data for
+CRYPTO_SYMBOLS = ["BTC/USD", "ETH/USD", "LTC/USD"]  # List of cryptocurrency symbols to fetch data for
 
 def fetch_stock(ticker:str) -> pd.DataFrame: # Fetch stock data for a given ticker symbol
     df = yf.Ticker(ticker).history(period="5d").reset_index() # Fetch the last 5 days of stock data for the given ticker
@@ -22,7 +22,7 @@ def fetch_crypto(symbol:str) -> pd.DataFrame: # Fetch cryptocurrency data for a 
     request = CryptoBarsRequest(
         symbol_or_symbols=symbol, # Specify the cryptocurrency symbol to fetch data for
         timeframe=TimeFrame.Day, # Set the timeframe to daily data
-        start=datetime.utcnow() - timedelta(days=5), # Set the start date to 5 days ago
+        start=datetime.now() - timedelta(days=5), # Set the start date to 5 days ago
     )
     df  = client.get_crypto_bars(request).df.reset_index() # Fetch the cryptocurrency data and reset the index
     df = df.rename(columns={
