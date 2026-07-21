@@ -43,7 +43,7 @@ def place_order(trading_client, symbol, side, qty): # Place a market order to bu
 def main():
     from alpaca.trading.client import TradingClient # Import the TradingClient class from the Alpaca trading client module
     trading_client = TradingClient(
-        os.environ("APCA_API_KEY_ID"), os.environ("APCA_API_SECRET_KEY"), paper=True
+        os.environ("ALPACA_API_KEY"), os.environ("ALPACA_SECRET_KEY"), paper=True
         ) # Initialize the Alpaca trading client with API credentials from environment variables
     supabase = create_client(os.environ("SUPABASE_URL"), os.environ("SUPABASE_KEY")) # Initialize the Supabase client with URL and key from environment variables
 
