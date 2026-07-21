@@ -1,5 +1,8 @@
 name: Fetch Market Data # Name of the workflow
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '0 21 * * 1-5'  # Run at 21:00 UTC (4:00 PM EST) every weekday (Monday to Friday)
@@ -10,10 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-        
-            fetch-depth: 0  # Fetch all history for all branches and tags
 
       - name: Set up Python
         uses: actions/setup-python@v5
