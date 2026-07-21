@@ -4,11 +4,10 @@ import joblib
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
+from features import FEATURES, add_features
 
 DATA_DIR = "data"  # Directory where the fetched data is stored
 MODEL_DIR = "models"  # Directory to save the trained model
-
-FEATURES = ["return_1d", "return_5d", "ma_5d", "ma_10", "volatility_5d", "price_vs_5ma"]  # Features for the model
 
 def load_all_stock_data() -> pd.DataFrame: # Load all stock data from CSV files in the data directory
     frames = [pd.read_csv(p, parse_dates=["Date"]) for p in glob.glob(f"{DATA_DIR}/stocks/*.csv")]  # Load all stock CSV files into DataFrames
@@ -57,7 +56,7 @@ def main():
     print(f"Loaded {len(df)} rows of stock data.") # Print the number of rows loaded
 
     print("Adding features...") # Print a message indicating that features are being added
-    df = add_features(df) # Add features to the DataFrame
+    df = add_features(df).dropna(subset=FEATURES + ["target"]) # Add features to the DataFrame and drop rows with NaN values in the specified features and target column
     print(f"Data after feature engineering has {len(df)} rows.") # Print the number of rows after feature engineering
 
     print("Training and evaluating model...") # Print a message indicating that the model is being trained and evaluated
