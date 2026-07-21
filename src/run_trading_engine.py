@@ -37,9 +37,10 @@ def place_order(trading_client, symbol, side, qty): # Place a market order to bu
         symbol=symbol, # The stock symbol to trade
         qty=qty, # The quantity of shares to trade (set to the global TRADE_QTY variable)
         side=OrderSide.BUY if side == "buy" else OrderSide.SELL, # Determine the order side (buy or sell) based on the input parameter
-        time_in_force=TimeInForce.GTC # Set the time in force for the order to "Good Till Canceled" (GTC)
+        time_in_force=TimeInForce.DAY # Set the time in force for the order to "day" (the order will be valid for the trading day)
     )
-    
+    return trading_client.submit_order(order_data) # Submit the order request to the Alpaca trading client
+
 def main():
     from alpaca.trading.client import TradingClient # Import the TradingClient class from the Alpaca trading client module
     trading_client = TradingClient(
