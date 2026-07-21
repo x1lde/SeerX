@@ -19,7 +19,7 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame: # Add features to the DataFr
     df["return_1d"] = df.groupby("Symbol")["Close"].pct_change(1) # Calculate the 1-day return of the closing price
     df["return_5d"] = df.groupby("Symbol")["Close"].pct_change(5) # Calculate the 5-day return of the closing price
     df["ma_5d"] = df.groupby("Symbol")["Close"].transform(lambda s: s.rolling(window=5).mean()) # Calculate the 5-day moving average of the closing price
-    df["ma_10d"] = df.groupby("Symbol")["Close"].transform(lambda s: s.rolling(window=10).mean()) # Calculate the 10-day moving average of the closing price
+    df["ma_10"] = df.groupby("Symbol")["Close"].transform(lambda s: s.rolling(window=10).mean()) # Calculate the 10-day moving average of the closing price
     df["volatility_5d"] = df.groupby("Symbol")["return_1d"].transform(lambda s: s.rolling(window=5).std()) # Calculate the 5-day rolling standard deviation of daily returns
     df["price_vs_5ma"] = df["Close"] / df["ma_5d"] - 1 # Calculate the price relative to the 5-day moving average
 
