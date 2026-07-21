@@ -33,4 +33,10 @@ jobs:
           git diff --staged --quiet || git commit -m "Update market data"
           git push
 
-
+      - name: Run trading engine
+        env:
+          ALPACA_API_KEY: ${{secrets.ALPACA_API_KEY}}
+          ALPACA_SECRET_KEY: ${{secrets.ALPACA_SECRET_KEY}}
+          SUPABASE_URL: ${{secrets.SUPABASE_URL}}
+          SUPABASE_KEY: ${{secrets.SUPABASE_KEY}}
+        run: python3 src/run_trading_engine.py
