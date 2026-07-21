@@ -3,3 +3,5 @@ yfinance
 alpaca-py
 python-dotenv
 requests
+scikit-learn
+joblib
