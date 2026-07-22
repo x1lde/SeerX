@@ -32,11 +32,11 @@ export default function App(){
     loadData();
   }, []);
 
-  if (loading) return <div classname='status'>Loading dashboard...</div>;
-  if (error) return <div classname='status error'>Failed to load data: {error}</div>
+  if (loading) return <div className='status'>Loading dashboard...</div>;
+  if (error) return <div className='status error'>Failed to load data: {error}</div>
 
   return (
-    <div classname='app'>
+    <div className='app'>
       <h1>SeerX</h1>
       <PortfolioSummary portfolio={portfolio} />
       <div className="grid">
