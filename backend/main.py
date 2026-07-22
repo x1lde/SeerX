@@ -66,7 +66,7 @@ def get_portfolio():
         "equity": float(account.equity),
         "cash": float(account.cash),
         "buying_power": float(account.buying_power),
-        positions: [
+        "positions": [
             {
                 "symbol": p.symbol,
                 "qty": float(p.qty),
