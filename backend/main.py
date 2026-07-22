@@ -23,7 +23,7 @@ supabase = create_client(
 def get_trading_cient():
     from alpaca.trading.client import TradingClient
     return TradingClient(
-        os.getenv["ALPACA_API_KEY"], os.getenv["ALPACA_SECRET_KEY"]
+        os.getenv("ALPACA_API_KEY"), os.getenv("ALPACA_SECRET_KEY")
     )
 
 @app.get("/health")
@@ -59,6 +59,7 @@ def get_portfolio():
         account = client.get_account()
         positions = client.get_all_positions()
     except Exception as e:
+        print(f"DEBUG CRASH TRACE: {e}")
         raise HTTPException(status_code=502, detail=f"Alpaca error: {e}")
 
     return{
