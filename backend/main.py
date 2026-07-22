@@ -73,5 +73,5 @@ def get_portfolio():
                 "unrealized_pl": float(p.unrealized_pl),
             }
             for p in positions
-        ],
+        ]
     }
