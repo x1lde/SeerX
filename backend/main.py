@@ -10,7 +10,7 @@ app = FastAPI(title="SeerX")
 
 app.add_middleware(
     CORSMiddleware, 
-    allow_origins=os.getenv("ALLOWED_ORIGINS").split(","),
+    allow_origins=os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(","),
     allow_methods=["GET"],
     allow_headers=["*"],
 )
@@ -23,7 +23,7 @@ supabase = create_client(
 def get_trading_cient():
     from alpaca.trading.client import TradingClient
     return TradingClient(
-        os.getenv("ALPACA_API_KEY"), os.getenv("ALPACA_SECRET_KEY")
+        os.getenv("ALPACA_API_KEY"), os.getenv("ALPACA_SECRET_KEY"), paper=True
     )
 
 @app.get("/health")
